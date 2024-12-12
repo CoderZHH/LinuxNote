@@ -1,0 +1,688 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>vim</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="34f6e459-9320-41c8-bb92-01ab7774ef65" class="page sans"><header><h1 class="page-title">vim</h1><p class="page-description"></p></header><div class="page-body"><figure id="6ee9d4a9-a74d-45e6-b3cb-8441e1e577de" class="image"><a href="vim%2034f6e459932041c8bb9201ab7774ef65/Untitled.png"><img style="width:561.923095703125px" src="vim%2034f6e459932041c8bb9201ab7774ef65/Untitled.png"/></a></figure><p id="a73fd30b-f361-4d47-bea4-b0227d1743dd" class=""><code>i</code> 写入</p><p id="25714be6-11a1-46ab-a3a3-77812f8570ff" class="">写完后<code>esc</code> </p><p id="dbb2036b-12ff-402a-b0cb-802c9d81c24b" class="">然后<code>:wq</code> （write quit）</p><figure id="cc0ecca7-c8b3-4779-852a-a91aff0ac9b9" class="image"><a href="vim%2034f6e459932041c8bb9201ab7774ef65/Untitled%201.png"><img style="width:563px" src="vim%2034f6e459932041c8bb9201ab7774ef65/Untitled%201.png"/></a></figure><h1 id="2dbfae8b-ca03-46c2-a531-6352ff67f5a1" class="">整体命令</h1><p id="8eaba716-d4d6-4c89-b78c-511ee1292ede" class="">Linux系统使用Shell整体命令。我们可以通过终端控制台来输入命令，由shell进行解释并最终交给内核执行。</p><p id="366713ee-c3b3-4e17-8085-2f5443aa12fc" class=""><code>ls</code> 命令用于显示系统所有的文件内容</p><h2 id="c43b49d9-6c35-476e-9822-e23b7734ab5e" class="">Shell命令的实现</h2><p id="2a79f838-e953-408d-9154-a68fe1e91049" class="">在Linux中，Shell的实现使用的是<code>sh</code>，即<code>Bash Shell</code>解释器。到后来为了简化，发布许多发行版如Debian、Ubuntu。CentOS默认使用的是<code>bash</code>。即sh链接到的是<code>bash</code></p><figure id="d482f7ea-0fcc-4eaf-b8b0-76568e2356d8" class="image"><a href="vim%2034f6e459932041c8bb9201ab7774ef65/Untitled%202.png"><img style="width:571.97119140625px" src="vim%2034f6e459932041c8bb9201ab7774ef65/Untitled%202.png"/></a></figure><p id="1f526c2d-50f4-4b15-a011-ff27d4ac35d7" class=""><code>-l</code> 命令表示将下列信息每一行完整的列举出来，可以加上一个路径如<code>/bin/</code> ，<code>|</code> 代表管道，<code>grep XXX</code> 表示搜索所有带有“XXX”的文件。完整命令:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3577734f-dbbb-4ead-b928-f171b9eb77e0" class="code"><code class="language-Bash">ls -l /bin/ | grep sh</code></pre><h3 id="295e7b5a-c267-402d-b44b-21372143f9b4" class="">man命令</h3><p id="91c6833b-74da-41a1-bc12-a5b68fff0d3a" class=""><code>man</code> 指令可以提供帮助文档，解释其他的命令。针对的是外部命令。对于内置命令，可以在<code>man</code> 后面加<code>-f</code> 。</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b1a65a0d-ec44-4865-a979-06ac6f06edf2" class="code"><code class="language-Bash">man ls
+man -f cd</code></pre><h3 id="21a48a4a-4e7b-4d74-951e-89ebd07035db" class="">help命令</h3><p id="13f37af3-1281-4d37-b923-00b676fcd48d" class=""><code>help</code>命令主要针对Bash内置命令提供帮助文档，缺点是纯英文。对于外部命令，可以使用<code>--help</code> ，其汉化效果优于<code>help</code> 。</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3e1b4d27-91ef-4ee7-83de-c5eeee24a0bf" class="code"><code class="language-Bash">help cd
+ls --help</code></pre><p id="543940aa-ac99-4512-a7a4-aea7f252e70e" class="">一般命令的选项中，长项（或者说全称）一般用“--”；而同一命令的短项（或者说简称）一般用“-”。</p><h3 id="23a804cd-4014-4da9-a450-f34e95fba3b7" class="">常用快捷键</h3><table id="aa7a67fa-d01c-46a1-a812-e7302605baa2" class="simple-table"><thead class="simple-table-header"><tr id="deaab3ed-0c29-4411-b11d-471ec2cebc18"><th id="J^YG" class="simple-table-header-color simple-table-header" style="width:345px">常用快捷键</th><th id="?l`B" class="simple-table-header-color simple-table-header" style="width:345px">功能</th></tr></thead><tbody><tr id="92ea048c-edb5-4f85-9788-1d763fa2cb30"><td id="J^YG" class="" style="width:345px"><code>ctrl+c</code> </td><td id="?l`B" class="" style="width:345px">停止进程</td></tr><tr id="c8df3919-a960-4dcc-be69-d9209b9f8240"><td id="J^YG" class="" style="width:345px"><code>Ctrl+l</code> </td><td id="?l`B" class="" style="width:345px">清屏</td></tr><tr id="ca305824-8f9e-4691-b9e6-8401c2adaacd"><td id="J^YG" class="" style="width:345px"><code>tab</code> </td><td id="?l`B" class="" style="width:345px">提示（防止打错）</td></tr><tr id="af68b404-d8d2-4209-b52a-c537e76bb3da"><td id="J^YG" class="" style="width:345px"><code>↑↓</code> </td><td id="?l`B" class="" style="width:345px">查找执行过的命令</td></tr></tbody></table><h2 id="a2c02993-32df-427c-ba20-245b4d4b3014" class="">文件目录类</h2><p id="8d66c6e7-fccf-4868-b2e3-9bfaf881b8bf" class=""><code>pwd</code> 全称print working directory打印工作目录，显示当前工作目录的绝对路径、<code>ls</code> 列举目录内容</p><p id="c239cf62-8425-4bd2-9906-c9423a835060" class="">、<code>cd</code> change directory切换目录。跳转到桌面：<code>cd /root/桌面</code> </p><p id="69480fba-9934-46b5-9f7b-f37bbbcfe56e" class="">切换用户：<code>su</code> </p><p id="b9deca1b-225e-4b98-825c-0acee8c025aa" class=""><code>ls -a</code> 所有文件。<code>.</code> 是当前目录文件，<code>..</code> 是上一级目录的文件。以<code>.</code> 开头的文件均为隐藏文件。<code>ls -l</code> 则是把属性文件全部列出，简写<code>ll</code>。</p><p id="a478c26b-c674-4f3a-8bbc-149e03ae63d0" class=""><code>mkdir</code> 用于创建文件夹。参数<code>-p</code> 用于多级创建。<code>mkdir -p a/b/c</code> 。<code>rmdir</code> 用于删除文件夹。</p><p id="c192338a-8671-4fec-918b-db34606c8e11" class=""><code>touch</code> 用于创建一个空文件。可以加路径指定创建。vim进入编辑后，<code>q</code>退出文件会消失，<code>wq</code> 则是保留空文件。</p><p id="54ee3713-43fb-4162-9aee-d9fbebd92af7" class=""><code>cp</code> 复制。语法为 <code>cp [选项] source dest</code> 将source文件复制到 目标文件dest下。此时dest文件的内容会提示是否覆盖。如果想强制覆盖dest文件不提示可以将<code>cp</code> 写成<code>\cp</code> 。其参数为：<code>-r</code> 递归复制整个文件夹。</p><p id="18ebd40e-3547-46c0-8653-cd5a2cdf544a" class=""><code>rm</code> 删除。语法为 <code>rm [选项] file</code> 。参数： <code>r</code>递归删除文件夹里的每一个文件  <code>f</code>强制不提示删除  <code>/</code>根目录 <code>*</code>通配符。<strong>删库跑路究极指令：</strong><code>rm -rf /*</code><strong> </strong></p><p id="090d6889-d3a2-4c23-a09a-9c814cc8c75e" class=""><code>mv</code> 移动。与复制语法相同。</p><p id="1aff170d-f6cd-411b-aebc-ae06d7f3665e" class=""><code>cat</code> 查看。参数：<code>-n</code> 显示所有的行号，包括空行。翻页空格，回车一行一行显示，<code>b</code> 向后翻页，<code>f</code> 向前翻页。<code>=</code> 可以显示当前行号。<code>:+f</code> 显示什么文件多少行。</p><p id="ac5817ec-dd2e-412b-aab8-9f7842b816df" class=""><code>less</code> 分屏显示内容。其功能与<code>more</code> 指令相似，用于打开一些很大的日志文件。<code>shift+g</code> 可以直接跳转到最后一页，<code>g</code>跳转到第一页。搜索：<code>/</code> 。<code>n</code> 搜索关键词下一个，<code>shift+n</code> 反之。</p><p id="ea4e07ef-3a08-4197-942c-cfbe98e2620e" class=""><code>head</code> <code>tail</code> 显示文件的开头与结尾，参数<code>-n</code> 指定行数。<code>tail -f</code> 用于查看追踪该文档的所有更新，部署项目时实时查看日志就很方便。<strong>但是</strong>，如果使用vim编辑文件后，文件不会实时更新，这是因为使用vim编辑后文件的<strong>索引</strong>号已经<strong>发生了变化</strong>，不是原来的文件了，就无法继续监听</p><p id="36afb0c7-a353-4512-9182-bcae906b1e08" class=""><code>echo</code> 用于输出内容。</p><p id="c63c096a-1027-41a7-bd3c-eb60b8baf45d" class=""><code><strong>tail</strong></code><strong> 的监听使用方法</strong></p><p id="e66e110c-1681-4c92-af23-aab6267d7c80" class="">先<code>tail -f info</code> ，输出的文件的具体信息，此时显示内容并没有退出，我们再打开一个终端，在此终端中写<code>echo hello</code> 追加内容，显示的内容就会实时更新。如果使用vim追加内容，监听的参数需要改成<code>-F</code> 。</p><p id="fcc8b847-0ff6-49af-bd5c-e8c106e15a9c" class=""><code>ln</code> 软连接，类似于Windows的快捷方式，有自己的数据块，存放文件的路径。语法：<code>ln -s [路径][链接名]</code> ，可以通过<code>pwd</code>显示路径，如果需要显示实际的路径而不包括软连接名字，需要使用<code>pwd -P</code> 指令。</p><p id="fceb3f76-5204-49ee-8347-4edf5167ba94" class="">删除软连接<code>rm -f 文件名</code>时，不会影响真实文件，但是当执行<code>rm -rf 文件名/</code> 时，会将<strong>真实目录</strong>下的子文件全部删除。</p><p id="8516dec2-efa7-4a19-8f2d-e2b0d4188871" class=""><code>history</code> 用于查看历史执行记录，后面可以接数字表示显示的行数，参数<code>-c</code> 表示清空历史记录</p><p id="dd806937-a793-49d9-87f4-4379934de10e" class="">
+</p><p id="db9bf828-e19f-4e3a-a2d8-2eb0cccea940" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

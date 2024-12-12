@@ -1,0 +1,702 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>文件目录指令</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="0cef2692-be1d-4f0f-bdfb-2117d8c0789a" class="page sans"><header><h1 class="page-title">文件目录指令</h1><p class="page-description"></p></header><div class="page-body"><p id="76c6eca5-db38-45b9-8111-ed48c624d146" class=""><code>mkdir</code> ：创建一个目录</p><p id="ac2e3609-e9fa-4ce5-a9e6-eb96e708d6ec" class=""><code>-p</code> 创建多层级目录</p><p id="096616cd-1162-49a3-bce5-664e87f3af0d" class="">
+</p><p id="9efe0b91-4ea3-4c40-a59d-f4189bfa7a16" class=""><code>rmdir</code>：删除空目录</p><p id="06013107-6134-478b-a3ce-db0610f4eaeb" class=""><code>-rf</code> ：强制删除</p><p id="fcf771b4-19a3-48a8-877e-f630b3d4061e" class="">
+</p><p id="153246b5-a14b-4ad9-8788-864ffe971025" class=""><code>touch</code>：创建空文件</p><p id="8baed20a-b645-4f64-90c2-01d633ca9e4e" class="">
+</p><p id="23911358-e3b4-4be6-a910-8705ad9cadd6" class=""><code>cp [选项] sourse dest</code> </p><p id="6529e1da-faa1-450a-88a3-f9d9b97a7861" class=""><code>-r</code> ：递归复制整个文件</p><p id="93db55d2-97c2-4846-a962-cb888fe86ea8" class=""><code>\cp</code> ：强制覆盖，不提示</p><p id="9c124fb5-76f9-44da-b2ea-da9665659e5c" class="">
+</p><p id="f0e3b664-3549-46f1-a807-6ea8cf23b684" class=""><code>rm [选项] sourse</code>：删除</p><p id="c49caa40-0bc6-44c2-8017-1c870e41d878" class=""><code>-r</code>：递归删除整个文件夹</p><p id="1847a2c3-059e-45e6-9914-f14454c13a68" class=""><code>-f</code>：强制删除不提示</p><p id="7acc3b7f-145c-4da8-89c4-b6f7a8463778" class="">
+</p><p id="15d01f83-84fc-4e4b-be09-db03baf26201" class=""><code>mv oldNameFile newNameFile</code> ：重命名</p><p id="21184ba5-d08d-4860-a2a4-b1723a6694f9" class=""><code>mv /temp/movefile /targetFolder</code>：移动文件</p><p id="e9c1d851-9e00-4d0d-9288-a397fea9ac8d" class=""><code>mv /temp/movefile /targetFolder/newNameFile </code>：移动并重新命名文件</p><p id="ad14e0b5-756c-40c4-beec-1a3b92271524" class="">
+</p><p id="adee382d-ff2c-4f94-bc84-585da34e7741" class=""><code>cat [选项] 要查看的文件</code> </p><p id="ac1d66fc-bb9d-4b5f-9d00-bde0ab8b1826" class=""><code>-n </code>：显示行号</p><p id="ff617d0a-37fb-4a6c-9681-5c8d87984225" class="">
+</p><figure id="f320cf87-3b60-452e-8a2a-1dc3b0687c94" class="image"><a href="%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E6%8C%87%E4%BB%A4%200cef2692be1d4f0fbdfb2117d8c0789a/Untitled.png"><img style="width:577px" src="%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E6%8C%87%E4%BB%A4%200cef2692be1d4f0fbdfb2117d8c0789a/Untitled.png"/></a></figure><figure id="15f9f29f-f7c5-47a7-9040-9d26a3d361b9" class="image"><a href="%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E6%8C%87%E4%BB%A4%200cef2692be1d4f0fbdfb2117d8c0789a/Untitled%201.png"><img style="width:577px" src="%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E6%8C%87%E4%BB%A4%200cef2692be1d4f0fbdfb2117d8c0789a/Untitled%201.png"/></a></figure><p id="24860fa7-b822-4a5c-aa28-7f1d9ca9b4c8" class="">
+</p><p id="ef786d60-aa13-4416-bb03-07cbaaddf47b" class=""><code>echo $HOSTNAME</code>  </p><p id="306437f3-76eb-4667-be6f-fe6eb8eb7b36" class=""><code>head -n 5 文件</code> </p><p id="65d6f8bb-79b6-479a-a1bb-a6a8752bb388" class=""><code>tail -n 5 文件</code> </p><p id="caa98b72-3732-4485-b8eb-771866f9ebdc" class="">
+</p><p id="7986a07a-fd32-4d63-b18c-20c033d4159b" class=""><code>tail -f mytext.text</code>：监听这个文件有无更新</p><p id="8932b4d4-ad7c-47de-866a-33a9af886e26" class=""><code>echo &quot;hello&quot; &gt; /home/mytext..text</code>：（可以是另一个用户的操作）通过echo将文字重定向到文件中</p><p id="c07a7e3e-adcd-4e82-982b-44881dc9eb21" class="">tail的指令输出hello</p><p id="04cc4e84-6692-451a-860c-cb36b37a864e" class="">
+</p><p id="3d9721f7-277d-4d7e-8fe7-8e74963f546a" class="">&gt;指令 和 &gt;&gt;指令</p><p id="b1fd9e7c-0793-4cc1-a7c8-1ba9bf5ac5ee" class="">&gt;输出重定向和 &gt;&gt;追加</p><p id="14653a76-50e1-4ceb-bd76-ab274685a088" class="">1)<code>ls -l &gt;文件</code>：(功能描述:列表的内容写入文件a.txt中(覆盖写))</p><p id="538c48db-eaee-4693-9323-b309eacb9543" class="">2)<code>ls -al &gt;&gt;文件</code>：(功能描述:列表的内容追加到文件a.txt的末尾)</p><p id="ff607714-d7c6-4f97-8a31-24bba72e664b" class="">3)<code>cat 文件1 &gt;文件2</code>：(功能描述:将文件1的内容覆盖到文件2)</p><p id="a8884b0f-f781-4ddb-a016-bba1d49229a0" class="">4)<code>echo&quot;内容&quot;&gt;&gt;文件</code></p><p id="3b35f035-cdd2-4090-acc3-9dd0c23d800c" class="">
+</p><p id="cacfd49d-9ae1-444e-8a9e-e7c8ec0112b3" class=""><code>ln -s [原文件或目录]  [软连接名]</code></p><p id="cafa6779-4161-4a62-b6da-4443e4fe52cc" class="">ln -s /root /home/myroot</p><p id="dac57ca2-68bb-4dbc-9cb0-6042d49da871" class="">在home下创建一个myroot软连接指向root文件夹</p><p id="f9fd7609-4371-47dd-97d3-ad9266005e80" class="">
+</p><p id="96409b0e-7313-4c9f-8ea3-c7674e0b40e5" class=""><code>find [搜索范围] [选项]</code> :在搜索范围内查找对应文件</p><p id="066cd1ce-a1d2-4e9d-8d01-7c62a7302139" class="">- name &lt;查询方式&gt;</p><p id="47ea6372-ded2-4561-bd81-9ccd79f6b163" class="">- user &lt;用户名&gt;</p><p id="f070e997-79bd-4e86-8c54-233f56f66001" class="">- size &lt;文件大小&gt; （+n大于 -n小于 n等于，单位k,M,G）</p><p id="127bce82-9fba-49aa-985a-c5dcf7e22905" class=""><code>find</code> <code>/home</code> <code>-name</code> <code>hello.txt</code></p><p id="0c891339-3a1f-4f0e-807b-0819b1c2d320" class=""><code>find</code> <code>/opt</code> <code>-user</code> <code>zhh</code></p><p id="aa4c0a9f-a8e2-4c37-ac8f-a5490e1cb62a" class=""><code>find</code> <code>/</code> <code>-size</code> <code>+200M</code></p><p id="ee49b93c-76eb-4079-aaaf-64a13261796c" class="">
+</p><p id="42da5df6-9c0a-4ba3-b5a5-cb3b2d4a3baa" class=""><code>updatedb</code> ：创建文件位置的数据库，供locate直接找</p><p id="8c57189c-c727-4113-b467-4cd9b2a5f48d" class=""><code>locate [文件名]</code></p><p id="184f23aa-c615-4158-99ba-a1abbff77330" class="">
+</p><p id="6d0a517d-e6a0-4751-a760-662a769d3846" class=""><code>grep [选项] 查找内容 源文件</code></p><p id="316f817b-e23b-4a86-acbf-1e7a6bd3b576" class="">-n 显示行号</p><p id="ca70d193-47d7-439c-b890-ba4ebbde2ac3" class="">-i 忽略字母大小写</p><p id="63792be7-aa56-40fa-b7ee-c92fe90e014e" class="">cat /home/hello.txt | grep “yes”</p><p id="9a656c68-7bcc-444d-b918-117d8c1cdc03" class="">grep -n “yes” /home/hello.txt</p><p id="e92df3b1-0273-4049-88ca-bddc003d0ef6" class="">
+</p><p id="f2780d48-a051-4aab-82d6-5fc5787893f5" class=""><code>gzipe</code>压缩文件</p><p id="1e1b3b20-1e5d-4e4a-898b-ccb3f5113126" class=""><code>gunzip</code>解压文件</p><p id="1102819f-b9cc-4f50-aa72-2a7c639d1f65" class="">
+</p><p id="516e4785-41a0-4e5a-9ef2-b8c556da88f0" class=""><code>zip</code> ：压缩</p><p id="16652885-faad-418f-a7fe-9613c014a8d7" class=""><code>-r</code> ：递归压缩</p><p id="ab9013f6-5e27-46ad-905e-8f476cbd48c4" class="">zip -r myzip.zip /home：压缩home文件夹</p><p id="b19042bf-84ba-41ce-809b-763d152287fe" class=""><code>unzip</code> ：解压</p><p id="30689593-2e4d-44d7-827f-492047164389" class=""><code>-d &lt;目录&gt;</code> ：指定解压目录</p><p id="ef47554a-d7be-437a-a3fc-e39f966fcbeb" class="">unzip -d /opt/tmp /home/myzip.zip：解压到/opt/tmp</p><p id="c52c2fcb-ce28-41e9-8d50-72d1ea4ac282" class="">
+</p><p id="f6c523f0-c924-49a7-a0d6-8f9f7b8463c8" class=""><code>tar [选项] XXX.tar.gz</code></p><p id="a7dcf365-a317-4713-a488-879515edcd20" class=""><code>-c</code>：产生.tar打包文件</p><p id="d429f2cf-b686-4dab-9b68-24d1322c36b3" class=""><code>-v</code>：显示详情信息</p><p id="38ebdf5d-9bba-43f8-9591-7db6b5d9688e" class=""><code>-f</code>：指定压缩后的文件名</p><p id="803121e6-94db-4311-a18e-4841368babdb" class=""><code>-z</code>：打包同时压缩</p><p id="ca0df0cf-5dd7-4c1d-8ca4-e15f018ac5c4" class=""><code>-x</code>：解包.tar文件</p><p id="0cb224b8-aa30-44ae-911f-2461df58d657" class=""><code>tar</code> <code>-zcvf</code> <code>pc.tar.gz</code> <code>/home/pig.txt /home/cat.txt</code>：多个文件打包压缩中间用空格隔开</p><p id="bec3c2f8-252c-48dc-8401-2312a4be6b8e" class=""><code>tar</code> <code>-zxvf</code> <code>pc.tar.gz</code> ：解压到当前目录</p><p id="23ad5bae-bda2-44a0-8445-ae0cb7eaaf0b" class=""><code>tar</code> <code>-zxvf</code> <code>/home/myhome.tar.gz</code> <code>-C</code> <code>/opt/tmp2</code></p><p id="251d19d7-5d9c-48cb-a4e8-e43110e441cc" class=""><code>-C</code> 理解成切换目录</p><p id="3de301e4-7ffd-4113-bfdd-79c683b991bc" class="">-z先压缩成.gz文件，c再打包成.tar包文件。</p><p id="12d9712a-48da-4a9f-b209-e879eb5d0ef2" class="">压缩和解压都是要z的，区别就在于：</p><p id="7721f30b-8a7e-49f4-a118-4032020ff615" class="">有x解包的时候z对应的就是解压的意思，</p><p id="5fc747bd-b286-447b-ad2a-31f4aa091f99" class="">有c打包的时候z就是压缩的意思</p><p id="a6f11467-294a-4a62-9135-cb55f72ae7ea" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
